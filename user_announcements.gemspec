@@ -10,9 +10,9 @@ Gem::Specification.new do |s|
   s.authors     = ["Steve Downey"]
   s.email       = ["steve.downtown@gmail.com"]
   s.homepage    = "https://github.com/stevedowney/user_announcements"
-  s.summary     = "Manage and display site-wide announcements by user, role and annoucement type."
+  s.summary     = "Manage and display site-wide announcements by user, role and announcement type."
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "CHANGELOG.md", "Rakefile", "README.md"]
 
   s.platform       = RUBY_PLATFORM =~ /java/ ? 'jruby' : 'ruby'
   
