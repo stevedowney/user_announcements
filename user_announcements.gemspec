@@ -7,16 +7,37 @@ require "user_announcements/version"
 Gem::Specification.new do |s|
   s.name        = "user_announcements"
   s.version     = UserAnnouncements::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of UserAnnouncements."
-  s.description = "TODO: Description of UserAnnouncements."
+  s.authors     = ["Steve Downey"]
+  s.email       = ["steve.downtown@gmail.com"]
+  s.homepage    = "https://github.com/stevedowney/user_announcements"
+  s.summary     = "Manage and display site-wide announcements by user, role and annoucement type."
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
 
-  s.add_dependency "rails", "~> 3.2.13"
-  # s.add_dependency "jquery-rails"
+  s.platform       = RUBY_PLATFORM =~ /java/ ? 'jruby' : 'ruby'
+  
+  s.add_dependency "rails"
+  s.add_dependency "jquery-rails"
+  
+  s.add_development_dependency 'sass-rails', '~> 3.2'
+  s.add_development_dependency 'bootstrap-sass', '~> 2.3.1.0'
+  s.add_development_dependency "rspec-rails"
+  s.add_development_dependency "capybara"
+  s.add_development_dependency "guard-rspec"
+  s.add_development_dependency "guard-spork"
 
-  s.add_development_dependency "sqlite3"
+  
+  if s.platform == 'java'
+    s.add_development_dependency 'activerecord-jdbcsqlite3-adapter'
+  else
+    s.add_development_dependency "sqlite3"
+  end
+
+  if ENV['ENGINE_DEVELOPER'] == 'true'
+    s.add_development_dependency 'better_errors'
+    s.add_development_dependency "redcarpet"
+    s.add_development_dependency "yard"
+    s.add_development_dependency 'quiet_assets'
+    s.add_development_dependency 'thin'
+  end
 end
