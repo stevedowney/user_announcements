@@ -23,6 +23,18 @@ Install files:
 ```sh
 rails generate user_announcements:install
 ```
+
+By default, Bootstrap styling is applied.  This can be turned on/off:
+
+```ruby
+# ../config/initializers/user_announcements.rb
+
+  # control Bootstrap styling
+  # c.bootstrap = false
+  c.bootstrap = true
+
+```
+
 Don't forget to restart your Rails server.
 
 ## Getting Going
