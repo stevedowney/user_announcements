@@ -1,6 +1,7 @@
 UserAnnouncements.config do |c|
   
-  # uncomment to user Bootstrap styling
-  # c.bootstrap = true
+  # control Bootstrap styling
+  # c.bootstrap = false
+  c.bootstrap = true
   
 end
