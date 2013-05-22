@@ -1,0 +1,29 @@
+table.ua-table {
+  border: 1px solid black;
+  
+  th, td {
+    border: 1px solid black;
+    padding: 0.5em;
+  }
+
+  td {
+    vertical-align: top;
+    
+    &.date {
+      white-space: nowrap;
+    }
+  }
+}
+
+.announcement.non-bootstrap {
+  width: 100%;
+  background-color: #F1F094;
+  border-bottom: solid 1px black;
+  padding: 10px;
+  text-align: center;
+  a {
+    font-size: 12px;
+    margin-left: 5px;
+    color: #6E5910;
+  }
+}

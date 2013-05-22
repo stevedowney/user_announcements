@@ -1,6 +1,6 @@
 <h1>Announcements</h1>
 
-<table border="1" cellspacing="0" cellpadding="4">
+<%= ua_table_tag(id: 'user-announcements') do %>
   <thead>
     <tr>
       <th>Date</th>
@@ -10,4 +10,5 @@
   <tbody>
     <%= render partial: 'user_announcements/announcement', collection: @announcements %>    
   </tbody>
-</table>
+<% end %>
+

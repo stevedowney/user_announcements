@@ -13,21 +13,27 @@ module UserAnnouncementsHelper
   end
   
   def announcement_div(announcement)
-    # <div class="alert">
-    #   <button type="button" class="close" data-dismiss="alert">&times;</button>
-    #   <strong>Warning!</strong> Best check yo self, you're not looking too good.
-    # </div>
-    
+    if bootstrap?
+      announcement_div_bootstrap(announcement)
+    else
+      announcement_div_non_bootstrap(announcement)
+    end
+  end
+  
+  def announcement_div_bootstrap(announcement)
     div_for announcement, class: 'alert', style: 'width:40em' do
       link_to(hide_user_announcement_path(announcement), remote: true) do
-        content_tag(:button, raw('&times;'), type: 'button', class: 'close', data: {dismissx: 'alert'})
+        content_tag(:button, raw('&times;'), type: 'button', class: 'close')
       end + 
       announcement.message.html_safe
     end
-    # div_for(announcement) do
-    #   announcement.message.html_safe +
-    #   link_to("hide announcement", 'hide_announcement_path(announcement)', remote: true)
-    # end
+  end
+  
+  def announcement_div_non_bootstrap(announcement)
+    div_for(announcement, class: 'non-bootstrap') do
+      announcement.message.html_safe +
+      link_to("hide announcement", hide_user_announcement_path(announcement), remote: true)
+    end
   end
   
   def unhide_announcement_link(announcement)
@@ -35,6 +41,20 @@ module UserAnnouncementsHelper
       content_tag(:div) do
         link_to('Unhide', unhide_user_announcement_path(announcement), method: :post)
       end
+    end
+  end
+  
+  def ua_table_attrs
+    if bootstrap?
+      {class: "table table-striped table-bordered table-condensed table-hover"}
+    else
+      {class: 'ua-table'}
+    end
+  end
+  
+  def ua_table_tag(options={})
+    content_tag(:table, options.merge(ua_table_attrs)) do
+      yield
     end
   end
   
@@ -60,4 +80,11 @@ module UserAnnouncementsHelper
     end
   end
   
+  def bootstrap?
+    if params.has_key?(:bootstrap)
+      params[:bootstrap] == 'true'
+    else
+      UserAnnouncements.config.bootstrap
+    end
+  end
 end

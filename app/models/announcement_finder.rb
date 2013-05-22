@@ -2,10 +2,9 @@ class AnnouncementFinder
   
   class << self
     
-    
-    # def ordered
-    #   Announcement.all.sort_by(&:status_order)
-    # end
+    def ordered
+      Announcement.all.sort_by(&:status_order)
+    end
     
     def current
       Announcement
@@ -15,7 +14,10 @@ class AnnouncementFinder
     end
     
     def past_or_current
-      Announcement.where("(starts_at is null or starts_at < :now)", :now => DateTime.now).order('created_at desc')
+      Announcement
+        .active
+        .where("(starts_at is null or starts_at < :now)", :now => DateTime.now)
+        .order('created_at desc')
     end
     
     def current_for_user(user)

@@ -9,12 +9,14 @@ module UserAnnouncements
 
       desc <<DESC
 Description:
-    Copies configuration file to 'config/initializers/user_announcements.rb'
-    Copies db migration  file to 'db/migrate/<timestamp>/create_user_announcement_tables.rb'
+    Copies stylesheet    to 'app/assets/stylesheets/user_announcements.css.scss'
+    Copies configuration to 'config/initializers/user_announcements.rb'
+    Copies db migration  to 'db/migrate/<timestamp>/create_user_announcement_tables.rb'
     
 DESC
   
       def install
+        copy_file "css.scss", 'app/assets/stylesheets/user_announcements.css.scss'
         copy_file "initializer.rb", 'config/initializers/user_announcements.rb'
         migration_template "migration.rb", "db/migrate/create_user_announcement_tables.rb"
       end

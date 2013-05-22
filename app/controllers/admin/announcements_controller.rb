@@ -2,7 +2,7 @@ class Admin::AnnouncementsController <  Admin::BaseController
   before_filter :find_announcement, :only => [:edit, :update, :destroy]
 
   def index
-    @announcements = Announcement.all#AnnouncementFinder.ordered
+    @announcements = AnnouncementFinder.ordered
   end
   
   def new
