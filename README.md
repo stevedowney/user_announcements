@@ -1,5 +1,8 @@
 # user_announcements
 
+[![Gem Version](https://badge.fury.io/rb/user_announcements.png)](http://badge.fury.io/rb/user_announcements)
+[![Code Climate](https://codeclimate.com/github/stevedowney/user_announcements.png)](https://codeclimate.com/github/stevedowney/user_announcements)
+
 Manage and display site-wide announcements on a per-user basis.
 
 Coming soon, scope by user role and announcement type.
