@@ -1,14 +1,38 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Dummy</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<%= yield %>
-
-</body>
+  <head>
+    <title>Bootstrap View Helpers Examples</title>
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <%= render partial: 'nav_bar' %>
+    <div class='container-fluid'>
+      <%= announcements %>
+      <div class='row-fluid'>
+        <div class='span3'>
+          <%= render partial: 'side_bar' %>
+        </div>
+        <div class='span9'>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
+
+<style>
+.announcementx {
+  width: 100%;
+  background-color: #F1F094;
+  border-bottom: solid 1px black;
+  padding: 10px 0;
+  text-align: center;
+  a {
+    font-size: 12px;
+    margin-left: 5px;
+    color: #6E5910;
+  }
+}
+</style>
