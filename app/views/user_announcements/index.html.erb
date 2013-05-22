@@ -1,0 +1,13 @@
+<h1>Announcements</h1>
+
+<table border="1" cellspacing="0" cellpadding="4">
+  <thead>
+    <tr>
+      <th>Date</th>
+      <th>Announcement</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render partial: 'user_announcements/announcement', collection: @announcements %>    
+  </tbody>
+</table>

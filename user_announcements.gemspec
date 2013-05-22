@@ -34,7 +34,9 @@ Gem::Specification.new do |s|
   end
 
   if ENV['ENGINE_DEVELOPER'] == 'true'
+    s.add_development_dependency 'bootstrap-view-helpers'
     s.add_development_dependency 'better_errors'
+    s.add_development_dependency 'binding_of_caller'
     s.add_development_dependency "redcarpet"
     s.add_development_dependency "yard"
     s.add_development_dependency 'quiet_assets'

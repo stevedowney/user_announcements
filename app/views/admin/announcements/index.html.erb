@@ -1,0 +1,22 @@
+<h1>Announcements</h1>
+
+<p>
+  <%= link_to('New Announcement', new_admin_announcement_path(), :class => 'btn btn-primary') %>
+</p>
+
+<table id="admin-announcements" class="table table-striped table-bordered table-condensed table-hover">
+  <thead>
+    <tr>
+      <th>Announcement</th>
+      <th>Starts</th>
+      <th>Ends</th>
+      <th>Status</th>
+      <th>Active</th>
+      <th colspan="2" width="1%">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render @announcements %>
+  </tbody>
+</table>
