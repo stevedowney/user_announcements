@@ -1,5 +1,6 @@
 .bundle/
-db/migrate/*create_user_announcement_tables.rblog/*.log
+spec/dummy/db/migrate/*create_user_announcement_tables.rb
+log/*.log
 pkg/
 spec/dummy/db/*.sqlite3
 spec/dummy/log/*.log
