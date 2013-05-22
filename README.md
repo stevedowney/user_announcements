@@ -7,6 +7,12 @@ Manage and display site-wide announcements on a per-user basis.
 
 Coming soon, scope by user role and announcement type.
 
+### Acknowledgements
+ 
+This gem was inspired by the [Site-Wide Announcements (revised)](http://railscasts.com/episodes/103-site-wide-announcements-revised)
+episode of [RailsCasts](http://railscasts.com/).  If you don't have a premium account you can see the 
+[original episode](http://railscasts.com/episodes/103-site-wide-announcements).
+
 ## Installation
 
 Add it to your Gemfile:
