@@ -18,7 +18,7 @@ episode of [RailsCasts](http://railscasts.com/).  If you don't have a premium ac
 Add it to your Gemfile:
 
 ```ruby
-gem "bootstrap-view-helpers"
+gem "user_announcements"
 ```
 
 Run bundler:
