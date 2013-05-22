@@ -9,7 +9,7 @@
   <body>
     <%= render partial: 'nav_bar' %>
     <div class='container-fluid'>
-      <%= announcements %>
+      <%= user_announcements %>
       <div class='row-fluid'>
         <div class='span3'>
           <%= render partial: 'side_bar' %>
@@ -21,18 +21,3 @@
     </div>
   </body>
 </html>
-
-<style>
-.announcementx {
-  width: 100%;
-  background-color: #F1F094;
-  border-bottom: solid 1px black;
-  padding: 10px 0;
-  text-align: center;
-  a {
-    font-size: 12px;
-    margin-left: 5px;
-    color: #6E5910;
-  }
-}
-</style>

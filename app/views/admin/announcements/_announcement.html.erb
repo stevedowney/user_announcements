@@ -1,5 +1,5 @@
 <tr id="<%= dom_id(announcement) %>" class='<%= announcement.status %>'>
-  <td><%=raw announcement.body %></td>
+  <td><%=raw announcement.message %></td>
   <td><%= announcement.starts_at.try(:to_s, :db) %></td>
   <td><%= announcement.ends_at.try(:to_s, :db) %></td>
   <td><%= announcement.status %></td>

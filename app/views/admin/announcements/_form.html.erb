@@ -4,8 +4,8 @@
   <%#= f.input(:starts_at, :as => :string, :input_html => {class: 'datepicker'}) %>
   <%#= f.input(:ends_at, :as => :string, :input_html => {class: 'datepicker'}) %>
   <p>
-    <%= f.label(:body) %>
-    <%= f.text_area :body, size: "60x10", class: 'span6' %>
+    <%= f.label(:message) %>
+    <%= f.text_area :message, size: "60x10", class: 'span6' %>
   </p>
 
   <%= ua_datetime_p(f, :starts_at) %>

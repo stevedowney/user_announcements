@@ -11,13 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130522011411) do
+ActiveRecord::Schema.define(:version => 20130522180430) do
 
   create_table "announcements", :force => true do |t|
-    t.text     "body"
+    t.text     "message"
     t.datetime "starts_at"
     t.datetime "ends_at"
     t.boolean  "active"
+    t.text     "roles"
+    t.text     "types"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -28,6 +30,9 @@ ActiveRecord::Schema.define(:version => 20130522011411) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
+
+  add_index "user_announcements", ["announcement_id"], :name => "index_user_announcements_on_announcement_id"
+  add_index "user_announcements", ["user_id"], :name => "index_user_announcements_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"

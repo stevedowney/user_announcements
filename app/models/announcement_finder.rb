@@ -8,7 +8,10 @@ class AnnouncementFinder
     # end
     
     def current
-      Announcement.where("(starts_at is null or starts_at < :now) and (ends_at is null or ends_at > :now)", :now => DateTime.now)
+      Announcement
+        .active
+        .where("starts_at is null or starts_at < :now", now: DateTime.now)
+        .where("ends_at is null or ends_at > :now", now: DateTime.now)
     end
     
     def past_or_current

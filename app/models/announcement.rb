@@ -1,9 +1,9 @@
 class Announcement < ActiveRecord::Base
-  attr_accessible :body, :starts_at, :ends_at, :active
+  attr_accessible :message, :starts_at, :ends_at, :active
 
   has_many :user_announcements, :dependent => :destroy
   
-  validates_presence_of :body, :starts_at, :ends_at
+  validates_presence_of :message, :starts_at, :ends_at
   
 
   PAST = 'past'
@@ -28,6 +28,10 @@ class Announcement < ActiveRecord::Base
   
   class << self
 
+    def active
+      where(active: true)
+    end
+    
     def new_with_defaults
       new do |ann|
         ann.active = true

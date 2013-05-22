@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   private
   
   def current_user
-    User.first
+    User.first.presence || User.create!(name: 'steve')
   end
   helper_method :current_user
   

@@ -1,10 +1,7 @@
 module UserAnnouncementsHelper
   
-  
-  # style: "warning"
-  # type: "blog"
-  # role: "admin super-admin"
-  def announcements(options={})
+  # Helper method for displaying messages for +current_user+.
+  def user_announcements(options={})
     return if controller.controller_name == 'user_announcements'
     
     announcements_rows = AnnouncementFinder.current_for_user(current_user)
@@ -25,10 +22,10 @@ module UserAnnouncementsHelper
       link_to(hide_user_announcement_path(announcement), remote: true) do
         content_tag(:button, raw('&times;'), type: 'button', class: 'close', data: {dismissx: 'alert'})
       end + 
-      announcement.body.html_safe
+      announcement.message.html_safe
     end
     # div_for(announcement) do
-    #   announcement.body.html_safe +
+    #   announcement.message.html_safe +
     #   link_to("hide announcement", 'hide_announcement_path(announcement)', remote: true)
     # end
   end

@@ -1,7 +1,7 @@
 <tr id="<%= dom_id(announcement) %>">
   <td class='date'><%= announcement.created_at.try(:to_s, :db) %></td>
   <td>
-    <%= announcement.body.html_safe %>
+    <%= announcement.message.html_safe %>
     <%= unhide_announcement_link(announcement) %>
   </td>
 </tr>
