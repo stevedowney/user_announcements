@@ -66,4 +66,20 @@ describe Admin::AnnouncementsController, :type => :feature do
     
   end
   
+  describe 'table attributes' do
+    before(:each) do
+      current_announcement
+    end
+    
+    it "bootstrap" do
+      visit admin_announcements_path(bootstrap: 'true')
+      page.should have_selector('table.ua-table.bootstrap')
+    end
+
+    it "non-bootstrap" do
+      visit admin_announcements_path(bootstrap: 'false')
+      page.should have_selector('table.ua-table.non-bootstrap')
+    end
+  end
+  
 end
