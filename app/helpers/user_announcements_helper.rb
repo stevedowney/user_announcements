@@ -36,7 +36,7 @@ module UserAnnouncementsHelper
   def announcement_div_non_bootstrap(announcement)
     div_for(announcement, class: 'non-bootstrap') do
       announcement.message.html_safe +
-      link_to("hide announcement", hide_user_announcement_path(announcement), method: :post, remote: true)
+      link_to("hide announcement", *hide_announcement_link_args(announcement))
     end
   end
   
