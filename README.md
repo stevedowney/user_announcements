@@ -1,6 +1,7 @@
 # user_announcements
 
 [![Gem Version](https://badge.fury.io/rb/user_announcements.png)](http://badge.fury.io/rb/user_announcements)
+[![Build Status](https://travis-ci.org/stevedowney/user_announcements.png)](https://travis-ci.org/stevedowney/user_announcements)
 [![Coverage Status](https://coveralls.io/repos/stevedowney/user_announcements/badge.png?branch=master)](https://coveralls.io/r/stevedowney/user_announcements?branch=master)
 [![Code Climate](https://codeclimate.com/github/stevedowney/user_announcements.png)](https://codeclimate.com/github/stevedowney/user_announcements)
 

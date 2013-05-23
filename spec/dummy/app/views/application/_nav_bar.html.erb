@@ -1,9 +1,9 @@
 <%= nav_bar do %>      
 
-  <%= brand('User Announcements') %>
+  <%= brand('User Announcements', class: 'my-brand') %>
 
   <%= nav_bar_links do %>
-    <%= nav_bar_link('Home', '/') %>
+    <%= nav_bar_link('Home', '/', class: ['a', 'b']) %>
     <%= nav_bar_divider %>
     <%= nav_dropdown('Admin') do %>
       <%= dropdown_item('Announcements', admin_announcements_path) %>

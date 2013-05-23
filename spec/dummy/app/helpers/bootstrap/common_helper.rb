@@ -33,7 +33,7 @@ module Bootstrap::CommonHelper
     
     case
     when arg.blank? then []
-    when arg.is_a?(Array) then ['arg']
+    when arg.is_a?(Array) then arg
     else arg.to_s.strip.split(/\s/)
     end.map(&:to_s)
   end
