@@ -33,7 +33,7 @@ module Bootstrap::CommonHelper
     
     case
     when arg.blank? then []
-    when arg.is_a?(Array) then arg
+    when arg.is_a?(Array) then ['arg']
     else arg.to_s.strip.split(/\s/)
     end.map(&:to_s)
   end
@@ -74,10 +74,10 @@ module Bootstrap::CommonHelper
   #   extract_extras('text')  #=> []
   #   extract_extras('text', :small, :info, id: 'foo')  #=> [:small, :info]
   # @return [Array]
-  def extract_extras(*args)
-    args.extract_options!
-    args.shift
-    args
-  end
+  # def extract_extras(*args)
+  #   args.extract_options!
+  #   args.shift
+  #   args
+  # end
   
 end

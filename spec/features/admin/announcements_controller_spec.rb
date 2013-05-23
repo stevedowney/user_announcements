@@ -51,4 +51,19 @@ describe Admin::AnnouncementsController, :type => :feature do
       page.should have_content('my updated message')
     end
   end
+  
+  describe 'delete' do
+    before(:each) do
+      current_announcement
+      visit admin_announcements_path
+      page.should have_content('current')
+      click_on 'delete'
+    end
+
+    it "delete" do
+      page.should_not have_content('current')
+    end
+    
+  end
+  
 end

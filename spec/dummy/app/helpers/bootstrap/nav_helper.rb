@@ -53,7 +53,7 @@ module Bootstrap::NavHelper
     url = options.delete(:url)
     
     if url.present?
-      link_to(text, url, options)
+      # link_to(text, url, options)
     else
       content_tag(:span, text, options)
     end
