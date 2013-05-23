@@ -9,6 +9,12 @@ Spork.prefork do
   require 'rspec/rails'
   require 'shoulda/matchers/integrations/rspec'
   require 'rspec/autorun'
+  
+  require 'capybara/rspec'
+  require 'capybara/webkit'# if ENV['WEBKIT']
+
+  Capybara.javascript_driver = :webkit
+  
 
   require 'coveralls'
   Coveralls.wear!

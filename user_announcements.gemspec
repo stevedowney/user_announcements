@@ -23,10 +23,14 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'bootstrap-sass', '~> 2.3.1.0'
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "capybara"
+  s.add_development_dependency "capybara-webkit"
+  
   s.add_development_dependency "guard-rspec"
   s.add_development_dependency "guard-spork"
   s.add_development_dependency 'coveralls'
   s.add_development_dependency 'shoulda-matchers'  
+  
+  # s.add_development_dependency 'bootstrap-view-helpers'
   
   if s.platform == 'java'
     s.add_development_dependency 'activerecord-jdbcsqlite3-adapter'
@@ -35,7 +39,7 @@ Gem::Specification.new do |s|
   end
 
   if ENV['ENGINE_DEVELOPER'] == 'true'
-    s.add_development_dependency 'bootstrap-view-helpers'
+    s.add_development_dependency 'launchy'
     s.add_development_dependency 'better_errors'
     s.add_development_dependency 'binding_of_caller'
     s.add_development_dependency "redcarpet"

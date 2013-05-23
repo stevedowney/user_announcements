@@ -1,7 +1,7 @@
 class Announcement < ActiveRecord::Base
   attr_accessible :message, :starts_at, :ends_at, :active
 
-  has_many :user_announcements, :dependent => :destroy
+  has_many :hidden_announcements, :dependent => :destroy
   
   validates_presence_of :message, :starts_at, :ends_at
   

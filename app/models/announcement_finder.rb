@@ -14,10 +14,14 @@ class AnnouncementFinder
     end
     
     def past_or_current
-      Announcement
+      Rails.logger.debug '***** start past_or_current'
+r =       Announcement
         .active
         .where("(starts_at is null or starts_at < :now)", :now => DateTime.now)
         .order('created_at desc')
+        Rails.logger.debug '***** end past_or_current'
+        # sleep 1
+    r  
     end
     
     def current_for_user(user)

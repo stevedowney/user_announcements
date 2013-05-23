@@ -8,6 +8,7 @@
     <%= nav_dropdown('Admin') do %>
       <%= dropdown_item('Announcements', admin_announcements_path) %>
     <% end %>
+    <%= nav_bar_link(current_user.name, '#')%>
   <% end %>
 
 <% end %>
