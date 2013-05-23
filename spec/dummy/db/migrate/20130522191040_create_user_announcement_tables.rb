@@ -1,0 +1,22 @@
+class CreateUserAnnouncementTables < ActiveRecord::Migration
+  def change
+    create_table :announcements do |t|
+      t.text :message
+      t.datetime :starts_at
+      t.datetime :ends_at
+      t.boolean :active
+      t.text :roles
+      t.text :types
+      t.timestamps
+    end
+    
+    create_table :user_announcements, :force => true do |t|
+      t.integer :user_id
+      t.integer :announcement_id
+      t.timestamps
+    end
+    
+    add_index :user_announcements, :user_id
+    add_index :user_announcements, :announcement_id
+  end
+end
