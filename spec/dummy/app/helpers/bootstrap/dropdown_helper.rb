@@ -46,11 +46,11 @@ module Bootstrap::DropdownHelper
   # @overload button_dropdown('Text', :info)
   # @overload button_dropdown('Text', :info, :mini)
   # @yield yielded block is usually calls to {Bootstrap::NavHelper#dropdown_item} or {Bootstrap::NavHelper#dropdown_divider}# @return [String]
-  def button_dropdown(*args)
-    content_tag(:div, class: 'btn-group') do
-      button_dropdown_link(*args) + dropdown_ul { yield }
-    end
-  end
+  # def button_dropdown(*args)
+  #   content_tag(:div, class: 'btn-group') do
+  #     button_dropdown_link(*args) + dropdown_ul { yield }
+  #   end
+  # end
   
   # Returns a Bootstrap split-button dropdown
   # 
@@ -61,13 +61,13 @@ module Bootstrap::DropdownHelper
   # @overload split_button_dropdown('Text', :large, :danger, url: '/url')
   # @yield yielded block is usually calls to {Bootstrap::NavHelper#dropdown_item} or {Bootstrap::NavHelper#dropdown_divider} 
   # @return [String]
-  def split_button_dropdown(*args)
-    extras = extract_extras(*args)
-    
-    content_tag(:div, class: 'btn-group') do
-      split_button_dropdown_default(*args) + split_button_dropdown_toggle(extras) + dropdown_ul { yield }
-    end
-  end
+  # def split_button_dropdown(*args)
+  #   extras = extract_extras(*args)
+  #   
+  #   content_tag(:div, class: 'btn-group') do
+  #     split_button_dropdown_default(*args) + split_button_dropdown_toggle(extras) + dropdown_ul { yield }
+  #   end
+  # end
   
   # Returns a link for use within various *_dropdown methods
   #
@@ -86,9 +86,9 @@ module Bootstrap::DropdownHelper
   
   # Returns a divider for various dropdowns
   # @return [String] <li class="divider">
-  def dropdown_divider
-    content_tag(:li, nil, class: 'divider')
-  end
+  # def dropdown_divider
+  #   content_tag(:li, nil, class: 'divider')
+  # end
 
   private
   
@@ -98,24 +98,24 @@ module Bootstrap::DropdownHelper
     end    
   end
 
-  def button_dropdown_link(*args)
-    text = args.shift
-    classes = %w(btn dropdown-toggle) + args.map { |e| "btn-#{e}" }
-    content_tag(:a, class: classes, data: {toggle: "dropdown"}, href: "#") do
-      safe_join( [ h(text), caret ], ' ' )
-    end
-  end
+  # def button_dropdown_link(*args)
+  #   text = args.shift
+  #   classes = %w(btn dropdown-toggle) + args.map { |e| "btn-#{e}" }
+  #   content_tag(:a, class: classes, data: {toggle: "dropdown"}, href: "#") do
+  #     safe_join( [ h(text), caret ], ' ' )
+  #   end
+  # end
   
-  def split_button_dropdown_default(*args)
-    button(*args)
-  end
+  # def split_button_dropdown_default(*args)
+  #   button(*args)
+  # end
   
-  def split_button_dropdown_toggle(extras)
-    classes = %w(btn dropdown-toggle) + extras.map { |e| "btn-#{e}" }
-    content_tag(:button, class: classes, data: {toggle: 'dropdown'}) do
-      caret
-    end
-  end
+  # def split_button_dropdown_toggle(extras)
+  #   classes = %w(btn dropdown-toggle) + extras.map { |e| "btn-#{e}" }
+  #   content_tag(:button, class: classes, data: {toggle: 'dropdown'}) do
+  #     caret
+  #   end
+  # end
   
   def dropdown_ul
     content_tag(:ul, class: "dropdown-menu") do

@@ -13,7 +13,6 @@ describe HomeController, :type => :feature do
     future_announcement
     inactive_announcement
     
-    puts current_announcement.inspect
     visit '/'
     page.should have_content('current')
     page.should_not have_content('past')
