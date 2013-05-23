@@ -1,17 +1,21 @@
 table.ua-table {
-  border: 1px solid black;
-  
-  th, td {
-    border: 1px solid black;
-    padding: 0.5em;
+
+  td.date {
+    white-space: nowrap;
   }
 
-  td {
-    vertical-align: top;
-    
-    &.date {
-      white-space: nowrap;
+  &.non-bootstrap {
+    border: 1px solid black;
+  
+    th, td {
+      border: 1px solid black;
+      padding: 0.5em;
     }
+
+    td {
+      vertical-align: top;
+    }
+  
   }
 }
 

@@ -2,7 +2,7 @@ module UserAnnouncementsHelper
   
   # Helper method for displaying messages for +current_user+.
   def user_announcements(options={})
-    return if controller.controller_name == 'user_announcements'
+    return if controller.controller_name == 'hidden_announcements'
     
     announcements_rows = AnnouncementFinder.current_for_user(current_user)
     divs = announcements_rows.map do |announcement|
@@ -22,24 +22,28 @@ module UserAnnouncementsHelper
   
   def announcement_div_bootstrap(announcement)
     div_for announcement, class: 'alert', style: 'width:40em' do
-      link_to(hide_user_announcement_path(announcement), remote: true) do
+      link_to(*hide_announcement_link_args(announcement)) do
         content_tag(:button, raw('&times;'), type: 'button', class: 'close')
       end + 
       announcement.message.html_safe
     end
   end
   
+  def hide_announcement_link_args(announcement)
+    [hidden_announcements_path(announcement_id: announcement), {method: :post, remote: true}]
+  end
+  
   def announcement_div_non_bootstrap(announcement)
     div_for(announcement, class: 'non-bootstrap') do
       announcement.message.html_safe +
-      link_to("hide announcement", hide_user_announcement_path(announcement), remote: true)
+      link_to("hide announcement", hide_user_announcement_path(announcement), method: :post, remote: true)
     end
   end
   
   def unhide_announcement_link(announcement)
     if @hidden_announcement_ids.include?(announcement.id)
       content_tag(:div) do
-        link_to('Unhide', unhide_user_announcement_path(announcement), method: :post)
+        link_to('Unhide', hidden_announcement_path(announcement, announcement_id: announcement), method: :delete)
       end
     end
   end

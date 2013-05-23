@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "guard-rspec"
   s.add_development_dependency "guard-spork"
   s.add_development_dependency 'coveralls'
+  s.add_development_dependency 'shoulda-matchers'  
   
   if s.platform == 'java'
     s.add_development_dependency 'activerecord-jdbcsqlite3-adapter'

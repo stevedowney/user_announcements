@@ -2,16 +2,17 @@ require 'spec_helper'
 
 describe Announcement do
   
-  def new_announcement(attributes={})
-    Announcement.new_with_defaults.tap do |ann|
-      ann.message = 'the message'
-      ann.attributes = attributes
-    end
+  describe 'validations' do
+    it { should validate_presence_of(:message) }
+    it { should validate_presence_of(:starts_at) }
+    it { should validate_presence_of(:ends_at) }
   end
+  
   
   let(:current_announcement) { new_announcement }
   let(:past_announcement) { new_announcement(ends_at: 1.minute.ago) }
   let(:future_announcement) { new_announcement(starts_at: 1.minute.from_now) }
+  let(:inactive_announcement) { new_announcement(active: false) }
   
   describe '#current?' do
     it "current" do
@@ -21,6 +22,15 @@ describe Announcement do
     it "not current" do
       past_announcement.should_not be_current
       future_announcement.should_not be_current
+    end
+  end
+  
+  describe '#status' do
+    it "statuses" do
+      current_announcement.status.should == Announcement::CURRENT
+      past_announcement.status.should == Announcement::PAST
+      future_announcement.status.should == Announcement::FUTURE
+      inactive_announcement.status.should == Announcement::INACTIVE
     end
   end
   

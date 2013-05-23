@@ -30,7 +30,7 @@ class AnnouncementFinder
     # end
     
     def for_user(user, type)
-      hidden_announcement_ids = UserAnnouncement.hidden_announcement_ids_for(user.id)
+      hidden_announcement_ids = HiddenAnnouncement.hidden_announcement_ids_for(user.id)
       result = type
       result = result.where("id not in (?)", hidden_announcement_ids) if hidden_announcement_ids.present?
       result.sort_by(&:status_order)

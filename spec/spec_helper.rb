@@ -7,6 +7,7 @@ Spork.prefork do
   require "rails/application"
   require File.expand_path("../dummy/config/environment", __FILE__)
   require 'rspec/rails'
+  require 'shoulda/matchers/integrations/rspec'
   require 'rspec/autorun'
 
   require 'coveralls'

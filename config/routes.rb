@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
   
-  resources :user_announcements, path: '/announcements' do
-    get :hide, on: :member
-    post :unhide, on: :member
-  end
-# match 'announcements/:id/hide', to: 'announcements#hide', as: 'hide_announcement'
+  resources :hidden_announcements, path: '/announcements', only: [:index, :create, :destroy]
+
   namespace :admin do
     resources :announcements
   end
