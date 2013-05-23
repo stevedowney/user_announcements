@@ -46,9 +46,9 @@ module UserAnnouncementsHelper
   
   def ua_table_attrs
     if bootstrap?
-      {class: "table table-striped table-bordered table-condensed table-hover"}
+      {class: "ua-table bootstrap table table-striped table-bordered table-condensed table-hover"}
     else
-      {class: 'ua-table'}
+      {class: 'ua-table non-bootstrap'}
     end
   end
   

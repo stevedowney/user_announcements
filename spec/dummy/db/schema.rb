@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130522180430) do
+ActiveRecord::Schema.define(:version => 20130522191040) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(:version => 20130522180430) do
   add_index "user_announcements", ["user_id"], :name => "index_user_announcements_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
