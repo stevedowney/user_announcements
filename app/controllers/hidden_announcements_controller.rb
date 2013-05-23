@@ -16,11 +16,4 @@ class HiddenAnnouncementsController < ApplicationController
     redirect_to action: 'index'
   end
   
-  private
-  
-  def ensure_current_user
-  rescue NameError
-    raise "You must have a current_user method"
-  end
-  
 end
