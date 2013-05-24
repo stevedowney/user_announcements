@@ -6,10 +6,10 @@ describe Admin::AnnouncementsController, :type => :feature do
   end
 
   it "index" do
-    announcement = saved_announcement(message: 'my message')
+    saved_current_announcement
     visit admin_announcements_path
     page.should have_selector('h1', text: 'Administer Announcements')
-    page.should have_content('my message')
+    page.should have_content('current')
   end
   
   describe 'create' do
@@ -33,7 +33,7 @@ describe Admin::AnnouncementsController, :type => :feature do
   
   describe 'update' do
     before(:each) do
-      saved_announcement
+      saved_current_announcement
       visit admin_announcements_path
       click_on 'edit'
     end
@@ -54,7 +54,7 @@ describe Admin::AnnouncementsController, :type => :feature do
   
   describe 'delete' do
     before(:each) do
-      current_announcement
+      saved_current_announcement
       visit admin_announcements_path
       page.should have_content('current')
       click_on 'delete'
@@ -68,7 +68,7 @@ describe Admin::AnnouncementsController, :type => :feature do
   
   describe 'table attributes' do
     before(:each) do
-      current_announcement
+      saved_current_announcement
     end
     
     it "bootstrap" do

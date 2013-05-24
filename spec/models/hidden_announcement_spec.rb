@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe HiddenAnnouncement do
   let(:user) { saved_user }
-  let(:announcement) { saved_announcement }
+  let(:announcement) { saved_current_announcement }
   let(:user_announcement) { HiddenAnnouncement.first! }
     
   describe 'validations' do
@@ -28,7 +28,6 @@ describe HiddenAnnouncement do
   
   describe '.hidden_announcement_ids_for' do
     before(:each) do
-      saved_announcement
       HiddenAnnouncement.create_for(user.id, announcement.id)
     end
 

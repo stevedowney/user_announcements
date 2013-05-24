@@ -8,10 +8,10 @@ describe HomeController, :type => :feature do
   let(:user) { saved_user }
   
   it "see current" do
-    current_announcement
-    past_announcement
-    future_announcement
-    inactive_announcement
+    saved_current_announcement
+    saved_past_announcement
+    saved_future_announcement
+    saved_inactive_announcement
     
     visit '/'
     page.should have_content('current')
@@ -21,13 +21,13 @@ describe HomeController, :type => :feature do
   end
   
   it "bootstrap" do
-    current_announcement
+    saved_current_announcement
     visit '/?bootstrap=true'
     page.should have_selector('div.announcement.alert', text: 'current')
   end
 
   it "non-bootstrap" do
-    current = saved_announcement(message: 'current', starts_at: 1.day.ago, ends_at: 1.day.from_now)
+    saved_current_announcement
     visit '/?bootstrap=false'
     page.should have_selector('div.announcement.non-bootstrap', text: 'current')
   end

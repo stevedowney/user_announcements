@@ -18,17 +18,17 @@ describe HiddenAnnouncementsController, :type => :feature do
   end
   
   it "index" do
-    announcement = saved_announcement(message: 'my message', starts_at: 1.day.ago, ends_at: 1.day.from_now)
+    announcement = saved_current_announcement
     HiddenAnnouncement.create_for(user.id, announcement.id)
     visit hidden_announcements_path
     page.should have_selector('h1', text: 'Announcements')
-    page.should have_content('my message')
+    page.should have_content('current')
   end
   
   # TODO: specs that test JS
   describe 'create' do
     it "bootstrap" do
-      announcement = current_announcement
+      announcement = saved_current_announcement
       visit root_url(bootstrap: 'true')
       page.should have_content('current')
       click_on "hide_announcement_#{announcement.id}"
@@ -36,7 +36,7 @@ describe HiddenAnnouncementsController, :type => :feature do
     end
   
     it "non-bootstrap" do
-      announcement = current_announcement
+      announcement = saved_current_announcement
       visit root_url(bootstrap: 'false')
       page.should have_content('current')
       click_on "hide_announcement_#{announcement.id}"
@@ -47,7 +47,7 @@ describe HiddenAnnouncementsController, :type => :feature do
   # TODO: specs that test JS
   describe 'destroy' do
     it "destroys" do
-      announcement = current_announcement
+      announcement = saved_current_announcement
       HiddenAnnouncement.create_for(user.id, announcement.id)
       visit '/announcements'
       page.should have_content('current')

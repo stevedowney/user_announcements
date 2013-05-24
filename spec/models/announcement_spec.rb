@@ -8,35 +8,29 @@ describe Announcement do
     it { should validate_presence_of(:ends_at) }
   end
   
-  
-  let(:current_announcement) { new_announcement }
-  let(:past_announcement) { new_announcement(ends_at: 1.minute.ago) }
-  let(:future_announcement) { new_announcement(starts_at: 1.minute.from_now) }
-  let(:inactive_announcement) { new_announcement(active: false) }
-  
   describe '#current?' do
     it "current" do
-      current_announcement.should be_current
+      saved_current_announcement.should be_current
     end
     
     it "not current" do
-      past_announcement.should_not be_current
-      future_announcement.should_not be_current
+      saved_past_announcement.should_not be_current
+      saved_future_announcement.should_not be_current
     end
   end
   
   describe '#status' do
     it "statuses" do
-      current_announcement.status.should == Announcement::CURRENT
-      past_announcement.status.should == Announcement::PAST
-      future_announcement.status.should == Announcement::FUTURE
-      inactive_announcement.status.should == Announcement::INACTIVE
+      saved_current_announcement.status.should == Announcement::CURRENT
+      saved_past_announcement.status.should == Announcement::PAST
+      saved_future_announcement.status.should == Announcement::FUTURE
+      saved_inactive_announcement.status.should == Announcement::INACTIVE
     end
   end
   
   describe '#status_order' do
     it "based on status" do
-      future_announcement.status_order.should == 1
+      saved_future_announcement.status_order.should == 1
     end
   end
   
@@ -59,18 +53,10 @@ describe Announcement do
     end
     
     describe '.active' do
-      def new_announcement(attributes)
-        Announcement.new_with_defaults.tap do |ann|
-          ann.message = 'the message'
-          ann.attributes = attributes
-          ann.save!
-        end
-      end
-      
       it "only gets active" do
-        active = new_announcement(active: true)
-        inactive = new_announcement(active: false)
-        Announcement.active.should == [active]
+        current_announcement = saved_current_announcement
+        saved_inactive_announcement
+        Announcement.active.should == [current_announcement]
       end
     end
   end
