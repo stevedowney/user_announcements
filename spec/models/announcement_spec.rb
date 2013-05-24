@@ -8,6 +8,12 @@ describe Announcement do
     it { should validate_presence_of(:ends_at) }
   end
   
+  describe 'serialization' do
+    its(:roles) { should be_instance_of(Array) }
+    its(:types) { should be_instance_of(Array) }
+    its(:styles) { should be_instance_of(Array) }
+  end
+  
   describe '#current?' do
     it "current" do
       saved_current_announcement.should be_current

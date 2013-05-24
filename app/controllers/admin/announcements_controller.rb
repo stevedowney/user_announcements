@@ -22,7 +22,10 @@ class Admin::AnnouncementsController <  Admin::BaseController
   end
   
   def update
-    if @announcement.update_attributes(params.fetch(:announcement))
+    attributes = params.fetch(:announcement)
+      .reverse_merge(roles: [])
+      
+    if @announcement.update_attributes(attributes)
       redirect_to admin_announcements_path, :flash => { success: 'Announcement updated' }
     else
       render "edit"

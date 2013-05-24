@@ -1,8 +1,11 @@
 <%= form_for [:admin, @announcement], :html => {:class => 'form-horizontal'} do |f| %>
   <%= active_model_errors(f.object) %>
-  <%#= f.input :subject, :as => :text, :input_html => {:size => "60x3", class: 'span6'} %>
-  <%#= f.input(:starts_at, :as => :string, :input_html => {class: 'datepicker'}) %>
-  <%#= f.input(:ends_at, :as => :string, :input_html => {class: 'datepicker'}) %>
+
+  <p>
+    <%= f.check_box(:active) %>
+    <%= f.label :active %>
+  </p>
+
   <p>
     <%= f.label(:message) %>
     <%= f.text_area :message, size: "60x10", class: 'span6' %>
@@ -12,11 +15,8 @@
 
   <%= ua_datetime_p(f, :ends_at) %>
   
-  <p>
-    <%= f.check_box(:active) %>
-    <%= f.label :active %>
-  </p>
-
+  <%= ua_roles_html(f) %>
+  
   <div class="form-actions">
     <%= f.submit :class => 'btn btn-primary' %>
     <%= link_to("Cancel", admin_announcements_path, :class => 'btn') %>

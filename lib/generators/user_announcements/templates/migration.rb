@@ -7,6 +7,7 @@ class CreateUserAnnouncementTables < ActiveRecord::Migration
       t.boolean :active
       t.text :roles
       t.text :types
+      t.text :styles
       t.timestamps
     end
     

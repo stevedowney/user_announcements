@@ -5,6 +5,7 @@ module AnnouncementFactory
       ann.message = 'current'
       ann.starts_at = 1.day.ago
       ann.ends_at = 1.day.from_now
+      ann.roles = ['']
     end
   end
   

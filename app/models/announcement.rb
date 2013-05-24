@@ -1,9 +1,13 @@
 class Announcement < ActiveRecord::Base
-  attr_accessible :message, :starts_at, :ends_at, :active
+  serialize :roles, class_name = Array
+  serialize :types, class_name = Array
+  serialize :styles, class_name = Array
+  
+  attr_accessible :message, :starts_at, :ends_at, :active, :roles
 
   has_many :hidden_announcements, :dependent => :destroy
   
-  validates_presence_of :message, :starts_at, :ends_at
+  validates_presence_of :message, :starts_at, :ends_at, :roles
   
   INACTIVE = 'inactive'
   PAST = 'past'
