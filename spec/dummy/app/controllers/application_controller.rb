@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  CurrentUserMethodNotDefinedError = Class.new(StandardError)
+  
   protect_from_forgery
   
   private
@@ -9,9 +11,9 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   
   def ensure_current_user
-    current_user
+    ENV['ENSURE_CURRENT_USER_TEST'] == 'true' ? will_raise_name_error : current_user
   rescue NameError
-    raise "You must have a current_user method"
+    raise CurrentUserMethodNotDefinedError, "You must have a current_user method"
   end
   
 end
