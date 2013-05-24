@@ -15,27 +15,26 @@ describe HiddenAnnouncementsController, :type => :feature do
     page.should have_content('my message')
   end
   
-  # describe 'create', js: true do
-  #   it "bootstrap" do
-  #     # announcement = current_announcement
-  #     # visit '/'
-  #     # page.should have_content('current')
-  #     # save_and_open_page
-  #     # link = find("#hide_announcement_#{announcement.id}")
-  #     # # find.click
-  #   end
-  # 
-  #   it "non-bootstrap" do
-  #     # announcement = current_announcement
-  #     # visit '/?bootstrap=false'
-  #     # page.should have_content('current')
-  #     # save_and_open_page
-  #     # click_on 'hide announcement'
-  #     # link = find("#hide_announcement_#{announcement.id}")
-  #     # # find.click
-  #   end
-  # end
+  # TODO: specs that test JS
+  describe 'create' do
+    it "bootstrap" do
+      announcement = current_announcement
+      visit root_url(bootstrap: 'true')
+      page.should have_content('current')
+      click_on "hide_announcement_#{announcement.id}"
+      page.should_not have_content('current')
+    end
   
+    it "non-bootstrap" do
+      announcement = current_announcement
+      visit root_url(bootstrap: 'false')
+      page.should have_content('current')
+      click_on "hide_announcement_#{announcement.id}"
+      page.should_not have_content('current')
+    end
+  end
+  
+  # TODO: specs that test JS
   describe 'destroy' do
     it "destroys" do
       announcement = current_announcement

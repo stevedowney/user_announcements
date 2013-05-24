@@ -9,6 +9,10 @@ class HiddenAnnouncementsController < ApplicationController
   def create
     @announcement_id = params.fetch(:announcement_id)
     HiddenAnnouncement.create_for(current_user.id, @announcement_id)
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js
+    end
   end
   
   def destroy

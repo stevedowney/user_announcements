@@ -31,7 +31,12 @@ module UserAnnouncementsHelper
   
   def hide_announcement_link_args(announcement)
     url = hidden_announcements_path(announcement_id: announcement)
-    options = {method: :post, remote: true, id: "hide_#{dom_id(announcement)}"}
+    options = {
+      method: :post,
+      remote: true,
+      id: "hide_#{dom_id(announcement)}"
+    }
+    
     [url, options]
   end
   
