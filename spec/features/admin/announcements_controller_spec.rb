@@ -25,6 +25,7 @@ describe Admin::AnnouncementsController, :type => :feature do
     
     it "success" do
       fill_in "Message", with: 'my new message'
+      check 'Public'
       click_on "Create Announcement"
       page.should have_selector('h1', text: 'Administer Announcements')
       page.should have_content('my new message')
