@@ -4,9 +4,9 @@ class Admin::BaseController < ApplicationController
   private
   
   def ensure_admin_user
-    # FIXME
-    # unless current_user.has_role?(:admin)
-    #   redirect_to root_path
-    # end
+    unless current_user.has_role?('admin')
+      flash[:alert] = 'Access denied'
+      redirect_to root_path
+    end
   end
 end

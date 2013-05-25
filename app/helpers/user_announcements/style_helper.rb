@@ -4,9 +4,9 @@ module UserAnnouncements::StyleHelper
   def ua_style_html(f)
     return unless _ua_styles.present?
 
-    f.label(:styles) +
+    f.label(:style) +
     ua_br + 
-    f.select(:styles, _ua_styles)
+    f.select(:style, _ua_styles)
   end
   
   private

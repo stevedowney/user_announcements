@@ -2,7 +2,7 @@ class Announcement < ActiveRecord::Base
   serialize :roles, class_name = Array
   serialize :types, class_name = Array
   
-  attr_accessible :message, :starts_at, :ends_at, :active, :roles, :styles
+  attr_accessible :message, :starts_at, :ends_at, :active, :roles, :style
 
   has_many :hidden_announcements, :dependent => :destroy
   

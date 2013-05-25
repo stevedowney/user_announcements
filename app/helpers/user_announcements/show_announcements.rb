@@ -23,7 +23,7 @@ module UserAnnouncements::ShowAnnouncements
   end
   
   def announcement_div_bootstrap(ann)
-    div_for ann, class: _ua_announcement_classes(ann.styles), style: 'width:40em' do
+    div_for ann, class: _ua_announcement_classes(ann.style), style: 'width:40em' do
       link_to(*hide_announcement_link_args(ann)) do
         content_tag(:button, raw('&times;'), type: 'button', class: 'close')
       end + 
@@ -32,7 +32,7 @@ module UserAnnouncements::ShowAnnouncements
   end
   
   def announcement_div_non_bootstrap(ann)
-    div_for(ann, class: _ua_announcement_classes(ann.styles)) do
+    div_for(ann, class: _ua_announcement_classes(ann.style)) do
       ann.message.html_safe +
       link_to("hide announcement", *hide_announcement_link_args(ann))
     end
