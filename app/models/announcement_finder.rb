@@ -75,7 +75,6 @@ class AnnouncementFinder
     # @param roles [Array<String>]
     # @return [Boolean]
     def user_can_see(user, roles)
-      puts "user_can_see: #{user.id} #{roles.inspect}"
       if roles.detect(&:blank?) || roles.blank?
         true
       else
