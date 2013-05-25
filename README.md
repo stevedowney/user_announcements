@@ -35,15 +35,49 @@ Install files:
 rails generate user_announcements:install
 ```
 
+## Configuration
+
+There are several configuration settings.  All are found in:
+
+```ruby
+# ../config/initializers/user_announcements.rb
+
+UserAnnouncements.config do |config|
+
+  # note: all options accept lambdas
+  
+end
+```
+
+### Bootstrap
+
 By default, Bootstrap styling is applied.  This can be turned on/off:
 
 ```ruby
 # ../config/initializers/user_announcements.rb
 
-  # control Bootstrap styling
-  # c.bootstrap = false
-  c.bootstrap = true
+c.bootstrap = false
+```
 
+### Roles
+
+Roles are not enabled by default.  To enable roles support, set the roles configuration option:
+
+```ruby
+
+config.roles = ['', 'admin']
+# config.roles = [ ['Public', ''], ['Administrator', 'admin'] ]
+# config.roles = lambda { MyRoleClass.map { |role| [role.name, role.id] } }
+```
+
+### Default Values for Announcements
+
+```ruby
+config.default_active = true
+config.default_starts_at = lambda { Time.now.in_time_zone }
+config.default_ends_at = lambda { 1.week.from_now.in_time_zone.end_of_day }
+config.default_roles = ['admin']
+config.default_style = ['alert-info']
 ```
 
 Don't forget to restart your Rails server.
