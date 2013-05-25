@@ -12,7 +12,7 @@ module UserAnnouncements
     
     config.roles = [['', 'Public'], ['admin', 'Admin']]
     config.types = []
-    config.styles = %w(error succes info)
+    config.styles = [['Yellow', ''], ['Red', 'alert-error'], ['Green', 'alert-success'], ['Blue', 'alert-info']]
     
   end
   

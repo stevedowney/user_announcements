@@ -1,6 +1,6 @@
 
 <tr id="<%= dom_id(announcement) %>">
-  <td class='date'><%= announcement.created_at.try(:to_s, :db) %></td>
+  <td class='datetime'><%= ua_datetime_display(announcement.starts_at_for_user) %></td>
   <td>
     <%= announcement.message.html_safe %>
     <%= unhide_announcement_link(announcement) %>

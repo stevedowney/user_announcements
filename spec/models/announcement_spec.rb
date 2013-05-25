@@ -4,14 +4,11 @@ describe Announcement do
   
   describe 'validations' do
     it { should validate_presence_of(:message) }
-    it { should validate_presence_of(:starts_at) }
-    it { should validate_presence_of(:ends_at) }
   end
   
   describe 'serialization' do
     its(:roles) { should be_instance_of(Array) }
     its(:types) { should be_instance_of(Array) }
-    its(:styles) { should be_instance_of(Array) }
   end
   
   describe '#current?' do
@@ -37,6 +34,18 @@ describe Announcement do
   describe '#status_order' do
     it "based on status" do
       saved_future_announcement.status_order.should == 1
+    end
+  end
+  
+  describe '#starts_at_for_user' do
+    it "starts_at if present" do
+      ann = Announcement.new(starts_at: 1.day.ago)
+      ann.starts_at_for_user.should == ann.starts_at
+    end
+    
+    it "created_at if no starts_at" do
+      ann = Announcement.new({created_at: 1.day.ago}, without_protection: true)
+      ann.starts_at_for_user.should == ann.created_at
     end
   end
   

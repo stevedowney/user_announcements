@@ -1,13 +1,12 @@
 class Announcement < ActiveRecord::Base
   serialize :roles, class_name = Array
   serialize :types, class_name = Array
-  serialize :styles, class_name = Array
   
-  attr_accessible :message, :starts_at, :ends_at, :active, :roles
+  attr_accessible :message, :starts_at, :ends_at, :active, :roles, :styles
 
   has_many :hidden_announcements, :dependent => :destroy
   
-  validates_presence_of :message, :starts_at, :ends_at, :roles
+  validates_presence_of :message
   
   INACTIVE = 'inactive'
   PAST = 'past'
@@ -25,6 +24,10 @@ class Announcement < ActiveRecord::Base
   
   def current?
     status == CURRENT
+  end
+  
+  def starts_at_for_user
+    starts_at || created_at
   end
   
   def status_order

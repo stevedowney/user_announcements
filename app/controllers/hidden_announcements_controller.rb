@@ -2,7 +2,7 @@ class HiddenAnnouncementsController < ApplicationController
   before_filter :ensure_current_user
   
   def index
-    @announcements = AnnouncementFinder.past_or_current
+    @announcements = AnnouncementFinder.for_edit(current_user)
     @hidden_announcement_ids = HiddenAnnouncement.hidden_announcement_ids_for(current_user.id)
   end
   

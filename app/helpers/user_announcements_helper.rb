@@ -1,23 +1,8 @@
 module UserAnnouncementsHelper
   include UserAnnouncements::RolesHelper
+  include UserAnnouncements::MiscHelper
+  include UserAnnouncements::StyleHelper
   include UserAnnouncements::ShowAnnouncements
-  
-  def announcement_div(announcement)
-    if bootstrap?
-      announcement_div_bootstrap(announcement)
-    else
-      announcement_div_non_bootstrap(announcement)
-    end
-  end
-  
-  def announcement_div_bootstrap(announcement)
-    div_for announcement, class: 'alert', style: 'width:40em' do
-      link_to(*hide_announcement_link_args(announcement)) do
-        content_tag(:button, raw('&times;'), type: 'button', class: 'close')
-      end + 
-      announcement.message.html_safe
-    end
-  end
   
   def hide_announcement_link_args(announcement)
     url = hidden_announcements_path(announcement_id: announcement)
@@ -30,13 +15,6 @@ module UserAnnouncementsHelper
     [url, options]
   end
   
-  def announcement_div_non_bootstrap(announcement)
-    div_for(announcement, class: 'non-bootstrap') do
-      announcement.message.html_safe +
-      link_to("hide announcement", *hide_announcement_link_args(announcement))
-    end
-  end
-  
   def unhide_announcement_link(announcement)
     if @hidden_announcement_ids.include?(announcement.id)
       content_tag(:div) do
@@ -47,7 +25,7 @@ module UserAnnouncementsHelper
   
   def ua_table_attrs
     if bootstrap?
-      {class: "ua-table bootstrap table table-striped table-bordered table-condensed table-hover"}
+      {class: "ua-table bootstrap table table-striped table-bordered table-hover"}
     else
       {class: 'ua-table non-bootstrap'}
     end
@@ -77,6 +55,7 @@ module UserAnnouncementsHelper
   def ua_datetime_p(f, method)
     content_tag(:p, class: 'datetime-select') do
       f.label(method) + 
+      ua_br +      
       f.datetime_select(method)
     end
   end

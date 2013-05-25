@@ -4,12 +4,16 @@ module UserAnnouncements::RolesHelper
   def ua_roles_html(f)
     return unless _ua_roles.present?
 
-    f.label(:roles) + _ua_roles_checkboxes(_ua_roles)
+    f.label(:roles) +
+    ua_br + 
+    _ua_roles_checkboxes(_ua_roles)
   end
 
   # Roles display on index page
   def ua_roles_display(announcement)
-    announcement.roles.map { |role_id| _ua_role_id_to_name(role_id) }.join(", ")
+    role_names = announcement.roles.map { |role_id| _ua_role_id_to_name(role_id) }
+
+    safe_join(role_names, '<br />'.html_safe)
   end
   
   private
