@@ -54,9 +54,8 @@ end
 By default, Bootstrap styling is applied.  This can be turned on/off:
 
 ```ruby
-# ../config/initializers/user_announcements.rb
-
-c.bootstrap = false
+c.bootstrap = true
+# c.bootstrap = false
 ```
 
 ### Roles
@@ -69,6 +68,24 @@ config.roles = ['', 'admin']
 # config.roles = [ ['Public', ''], ['Administrator', 'admin'] ]
 # config.roles = lambda { MyRoleClass.map { |role| [role.name, role.id] } }
 ```
+
+The configured roles are selectable on the announcement edit page.
+
+### Styles
+
+You can control the appearance of the announcements by setting a style -- which sets a CSS class on the
+announcment <div>.
+
+```ruby
+# this gives you the Bootstrap alert choices
+config.styles = [['Yellow', ''], ['Red', 'alert-error'], ['Green', 'alert-success'], ['Blue', 'alert-info']]
+
+# this will give something close to the Bootstrap alerts
+# makes use of the stylesheet copied to `app/assets/stylesheets/user_announcements.css` at installation.
+config.styles = [['Yellow', 'yellow'], ['Red', 'error'], ['Green', 'success'], ['Blue', 'info']]
+```
+
+The configured styles are shown in a dropdown on the announcement edit page.
 
 ### Default Values for Announcements
 
