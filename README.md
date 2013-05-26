@@ -113,6 +113,18 @@ by visiting:
 http://<your app>/announcements
 ```
 
+### URL Helpers
+
+The following url helpers are available:
+
+```ruby
+# admin manages announcements
+admin_announcements_path
+
+# user manages own announcements
+hidden_announcements_path
+```
+
 ## Configuration
 
 There are several configuration settings found in `../config/initializers/user_announcements.rb`.
