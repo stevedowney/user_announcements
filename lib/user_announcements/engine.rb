@@ -1,21 +1,9 @@
-puts '*** load UserAnnouncements'
 module UserAnnouncements
   
   class Engine < ::Rails::Engine
+
     config.generators.integration_tool :rspec
     config.generators.test_framework :rspec
-    
-    # config.bootstrap = true
-    #   
-    # config.default_active = true
-    # config.default_starts_at = lambda { Time.now.in_time_zone }
-    # config.default_ends_at = lambda { 1.week.from_now.in_time_zone.end_of_day }
-    # config.default_roles = ['']
-    # config.default_style = ''
-    # 
-    # config.roles = []
-    # config.styles = [['Yellow', ''], ['Red', 'alert-error'], ['Green', 'alert-success'], ['Blue', 'alert-info']]
-    # config.types = []
     
   end
   
