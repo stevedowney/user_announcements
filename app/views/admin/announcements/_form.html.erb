@@ -1,5 +1,5 @@
 <%= form_for [:admin, @announcement], :html => {:class => 'form-horizontal announcement-detail'} do |f| %>
-  <%= active_model_errors(f.object) %>
+  <%= _ua_active_model_errors(f.object) %>
 
   <p>
     <%= f.check_box(:active) %>

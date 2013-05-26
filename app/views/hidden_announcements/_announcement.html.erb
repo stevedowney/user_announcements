@@ -3,6 +3,6 @@
   <td class='datetime'><%= ua_datetime_display(announcement.starts_at_for_user) %></td>
   <td>
     <%= announcement.message.html_safe %>
-    <%= unhide_announcement_link(announcement) %>
+    <%= _ua_unhide_announcement_link(announcement) %>
   </td>
 </tr>

@@ -24,7 +24,6 @@ module UserAnnouncements::RolesHelper
   end
 
   def _ua_role_checkbox(role)
-    # role_id, role_name = role.is_a?(Array) ? role : [role, role]
     id = "role_#{role.id}"
     checked = @announcement.roles.include?(role.id)
 

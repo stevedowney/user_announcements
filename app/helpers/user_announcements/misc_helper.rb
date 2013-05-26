@@ -8,9 +8,9 @@ module UserAnnouncements::MiscHelper
     end
   end
   
-  # Return a <br> tag if not bootstrap?
+  # Return a <br> tag if not bootstrap
   def ua_br
-    "<br />".html_safe unless bootstrap?
+    "<br />".html_safe unless ua_bootstrap?
   end
   
   def flash_messages
@@ -28,5 +28,12 @@ module UserAnnouncements::MiscHelper
     end
   end
   
+  def ua_bootstrap?
+    if params.has_key?(:bootstrap)
+      params[:bootstrap] == 'true'
+    else
+      UserAnnouncements.config.bootstrap
+    end
+  end
   
 end
