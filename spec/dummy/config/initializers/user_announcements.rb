@@ -3,6 +3,10 @@ UserAnnouncements.config do |config|
   config.bootstrap = true
   config.styles = [['Yellow', ''], ['Red', 'alert-error'], ['Green', 'alert-success'], ['Blue', 'alert-info']]
 
+  config.default_roles = ['admin']
+  config.default_style = 'alert-info'
+  
+  config.roles = [['Public', ''], ['Admin', 'admin']]
   # config.bootstrap = false
   # config.styles = %w(yellow red green blue)
   

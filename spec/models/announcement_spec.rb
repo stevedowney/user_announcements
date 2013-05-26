@@ -55,15 +55,23 @@ describe Announcement do
       let(:ann) { Announcement.new_with_defaults }
       
       it "be active" do
-        ann.should be_active
+        ann.active.should == UserAnnouncements[:default_active]
       end
       
       it "starts_at defaults to now" do
-        ann.starts_at.should be_within(1).of(DateTime.now)
+        ann.starts_at.should be_within(1).of(UserAnnouncements[:default_starts_at])
       end
       
       it "ends one week from now at end of day" do
-        ann.ends_at.should be_within(1).of(1.week.from_now.end_of_day)
+        ann.ends_at.should be_within(1).of(UserAnnouncements[:default_ends_at])
+      end
+      
+      it "roles" do
+        ann.roles.should == UserAnnouncements[:default_roles]
+      end
+      
+      it "style" do
+        ann.style.should == UserAnnouncements[:default_style]
       end
     end
     

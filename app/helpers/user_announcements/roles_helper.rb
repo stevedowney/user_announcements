@@ -1,5 +1,6 @@
 module UserAnnouncements::RolesHelper
-
+  Role = Struct.new(:name, :id) 
+  
   # Roles checkboxes for admin detail form
   def ua_roles_html(f)
     return unless _ua_roles.present?
@@ -23,21 +24,22 @@ module UserAnnouncements::RolesHelper
   end
 
   def _ua_role_checkbox(role)
-    role_id, role_name = role.is_a?(Array) ? role : [role, role]
-    id = "role_#{role_id}"
-    checked = @announcement.roles.include?(role_id)
+    # role_id, role_name = role.is_a?(Array) ? role : [role, role]
+    id = "role_#{role.id}"
+    checked = @announcement.roles.include?(role.id)
 
-    check_box_tag('announcement[roles][]', role_id, checked, id: id) + ' ' +
-      label_tag(id, role_name, style: "display: inline; margin-right: 1em")
+    check_box_tag('announcement[roles][]', role.id, checked, id: id) + ' ' +
+      label_tag(id, role.name, style: "display: inline; margin-right: 1em")
   end
 
   def _ua_role_id_to_name(role_id)
-    _ua_roles.detect { |id, name| id == role_id  }.try(:last)
+    _ua_roles.detect { |role| role.id == role_id  }.try(:name)
   end
   
   def _ua_roles
     @_ua_roles ||= UserAnnouncements[:roles].map do |role|
-      (role.is_a?(Array) ? role : [role, role]).map(&:to_s)
+      name_id = (role.is_a?(Array) ? role : [role, role]).map(&:to_s)
+      Role.new(name_id.first, name_id.last)
     end
   end
 end

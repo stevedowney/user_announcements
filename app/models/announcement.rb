@@ -45,6 +45,8 @@ class Announcement < ActiveRecord::Base
         ann.active = get_default(:active)
         ann.starts_at = get_default(:starts_at)
         ann.ends_at = get_default(:ends_at)
+        ann.roles = Array(get_default(:roles))
+        ann.style = get_default(:style)
       end
     end
     

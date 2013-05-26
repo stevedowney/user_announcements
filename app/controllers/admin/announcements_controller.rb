@@ -1,4 +1,5 @@
 class Admin::AnnouncementsController <  Admin::BaseController
+  before_filter :ensure_admin_user
   before_filter :find_announcement, :only => [:edit, :update, :destroy]
 
   def index

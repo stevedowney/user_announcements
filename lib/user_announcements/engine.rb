@@ -1,3 +1,4 @@
+puts '*** load UserAnnouncements'
 module UserAnnouncements
   
   class Engine < ::Rails::Engine
@@ -9,10 +10,18 @@ module UserAnnouncements
     config.default_active = true
     config.default_starts_at = lambda { Time.now.in_time_zone }
     config.default_ends_at = lambda { 1.week.from_now.in_time_zone.end_of_day }
+    config.default_roles = ['']
+    config.default_style = ''
     
-    config.roles = [['', 'Public'], ['admin', 'Admin']]
-    config.types = []
+    config.roles = []
     config.styles = [['Yellow', ''], ['Red', 'alert-error'], ['Green', 'alert-success'], ['Blue', 'alert-info']]
+    config.types = []
+    
+    initializer 'user_announcements.action_controller' do |app|
+      ActiveSupport.on_load(:action_controller) do
+        include UserAnnouncements::ControllerMethods
+      end
+    end
     
   end
   
