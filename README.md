@@ -5,15 +5,28 @@
 [![Coverage Status](https://coveralls.io/repos/stevedowney/user_announcements/badge.png?branch=master)](https://coveralls.io/r/stevedowney/user_announcements?branch=master)
 [![Code Climate](https://codeclimate.com/github/stevedowney/user_announcements.png)](https://codeclimate.com/github/stevedowney/user_announcements)
 
-Manage and display site-wide announcements on a per-user basis.
+## Features:
 
-Coming soon, scope by user role and announcement type.
+* admins
+  * page for maintaining announcements
+  * announcements can be scoped by user role
+* users
+  * hide announcements
+  * view past and hidden announcements
+  * unhide hidden announcements
 
 ### Acknowledgements
  
 This gem was inspired by the [Site-Wide Announcements (revised)](http://railscasts.com/episodes/103-site-wide-announcements-revised)
 episode of [RailsCasts](http://railscasts.com/).  If you don't have a premium account you can see the 
 [original episode](http://railscasts.com/episodes/103-site-wide-announcements).
+
+## Assumptions
+
+* your controllers respond to `ensure_admin_user` which ensures only admin users can create/edit/delete
+announcemets
+* your controllers respond to `current_user`, which is also a `helper_method`
+* if you implement roles, `current_user` responds to `#has_role?(<role>)`
 
 ## Installation
 
@@ -35,79 +48,53 @@ Install files:
 rails generate user_announcements:install
 ```
 
-## Configuration
+## Getting Started
 
-There are several configuration settings.  All are found in:
+### Controller Methods Example
 
 ```ruby
-# ../config/initializers/user_announcements.rb
-
-UserAnnouncements.config do |config|
-
-  # note: all options accept lambdas
+class ApplicationController < ActionController::Base
+  protect_from_forgery
+  
+  private
+  
+  def ensure_admin_user
+    current_user.has_role?('admin')
+  end
+  
+  def current_user
+    @user ||= User.find(session[:user_id])
+  end
+  helper_method :current_user
   
 end
 ```
 
-### Bootstrap
+### User Model Methods
 
-By default, Bootstrap styling is applied.  This can be turned on/off:
-
-```ruby
-c.bootstrap = true
-# c.bootstrap = false
-```
-
-### Roles
-
-Roles are not enabled by default.  To enable roles support, set the roles configuration option:
 
 ```ruby
-
-config.roles = ['', 'admin']
-# config.roles = [ ['Public', ''], ['Administrator', 'admin'] ]
-# config.roles = lambda { MyRoleClass.map { |role| [role.name, role.id] } }
+class User < ActiveRecord::Base
+  
+  def has_role?(role)
+    return true if role.blank?
+    return true if role == admin && self.admin?
+    # ... more elaborate role checking code here?
+    false
+  end
+  
+end
 ```
 
-The configured roles are selectable on the announcement edit page.
-
-### Styles
-
-You can control the appearance of the announcements by setting a style -- which sets a CSS class on the
-announcment <div>.
-
-```ruby
-# this gives you the Bootstrap alert choices
-config.styles = [['Yellow', ''], ['Red', 'alert-error'], ['Green', 'alert-success'], ['Blue', 'alert-info']]
-
-# this will give something close to the Bootstrap alerts
-# makes use of the stylesheet copied to `app/assets/stylesheets/user_announcements.css` at installation.
-config.styles = [['Yellow', 'yellow'], ['Red', 'error'], ['Green', 'success'], ['Blue', 'info']]
-```
-
-The configured styles are shown in a dropdown on the announcement edit page.
-
-### Default Values for Announcements
-
-```ruby
-config.default_active = true
-config.default_starts_at = lambda { Time.now.in_time_zone }
-config.default_ends_at = lambda { 1.week.from_now.in_time_zone.end_of_day }
-config.default_roles = ['admin']
-config.default_style = ['alert-info']
-```
-
-Don't forget to restart your Rails server.
-
-## Getting Going
-
-To create an announcement go to:
+### Create an Announcement
 
 ```
 http://<your app>/admin/announcements
 ```
 
-To see the announcment add the helper method to your views, e.g.:
+### View the Announcement
+
+Add the helper method to your layout:
 
 ```erb
 #../layouts/application.html.erb
@@ -117,8 +104,47 @@ To see the announcment add the helper method to your views, e.g.:
   ...
 ```
 
-Non-admin users can see (and unhide) announcements they have hidden:
+Now visit some page that uses that layout to see the announcement.
+
+Non-admin users can see current and past announcements, including ones they have hidden,
+by visiting:
 
 ```
 http://<your app>/announcements
 ```
+
+## Configuration
+
+There are several configuration settings found in `../config/initializers/user_announcements.rb`.
+
+```ruby
+# note: all options accept lambdas
+
+UserAnnouncements.config do |config|
+
+  # Bootstrap
+  config.bootstrap = true
+  config.styles = [['Yellow', ''], ['Red', 'alert-error'], ['Green', 'alert-success'], ['Blue', 'alert-info']]
+
+  # non-Bootstrap
+  # config.bootstrap = false
+  # config.styles = [['Yellow', 'yellow'], ['Red', 'red'], ['Green', 'green'], ['Blue', 'blue']]
+
+  # Announcement defaults
+  config.default_active = true
+  config.default_starts_at = lambda { Time.now.in_time_zone }
+  config.default_ends_at = lambda { 1.week.from_now.in_time_zone.end_of_day }
+  config.default_style = ''
+  # config.default_roles = ['admin']
+
+  # Roles
+  # config.roles = []
+  # config.roles = ['', 'admin']
+  # config.roles = [ ['Public', ''], ['Administrator', 'admin'] ]
+  # config.roles = lambda { MyRoleClass.map { |role| [role.name, role.id] } }  
+  
+end
+```
+
+Don't forget to restart your Rails server after changes to the config file.
+
