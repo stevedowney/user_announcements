@@ -1,4 +1,5 @@
 class Admin::AnnouncementsController < ApplicationController
+
   before_filter :ensure_admin_user
   before_filter :find_announcement, :only => [:edit, :update, :destroy]
 
@@ -14,7 +15,7 @@ class Admin::AnnouncementsController < ApplicationController
   end
   
   def create
-    @announcement = Announcement.new(params.fetch(:announcement))
+    @announcement = Announcement.new(announcement_params)
     if @announcement.save
       redirect_to admin_announcements_path, :flash => { success: 'Announcement created'}
     else
@@ -23,10 +24,9 @@ class Admin::AnnouncementsController < ApplicationController
   end
   
   def update
-    attributes = params.fetch(:announcement)
-      .reverse_merge(roles: [])
-      
-    if @announcement.update_attributes(attributes)
+    @announcement.attributes = announcement_params
+    @announcement.roles = [] unless announcement_params.has_key?(:roles)  
+    if @announcement.save
       redirect_to admin_announcements_path, :flash => { success: 'Announcement updated' }
     else
       render "edit"
@@ -38,9 +38,33 @@ class Admin::AnnouncementsController < ApplicationController
     redirect_to admin_announcements_path, :flash => { success: 'Announcement deleted' }
   end
 
-protected
+  private
 
   def find_announcement
     @announcement = Announcement.find(params.fetch(:id))
+  end
+  
+  def announcement_params
+    if defined?(StrongParameters)
+      params.require(:announcement).permit(
+       :active,
+       :message,
+       :"starts_at(1i)",
+       :"starts_at(2i)",
+       :"starts_at(3i)",
+       :"starts_at(4i)",
+       :"starts_at(5i)",
+       :"ends_at(1i)",
+       :"ends_at(2i)",
+       :"ends_at(3i)",
+       :"ends_at(4i)",
+       :"ends_at(5i)",
+       :style,
+       {:roles => []},
+       :type,
+      )
+    else
+      params.fetch(:announcement)
+    end
   end
 end
