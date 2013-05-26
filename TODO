@@ -1,12 +1,1 @@
-CSS
-
-
-Detail form
-- add type
-
-user_announcements helper
-- style
-- type
-- roles
-
-- deal w/Admin access to admin page
+* implement announcement scoping by type

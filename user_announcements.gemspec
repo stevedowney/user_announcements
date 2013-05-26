@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.authors     = ["Steve Downey"]
   s.email       = ["steve.downtown@gmail.com"]
   s.homepage    = "https://github.com/stevedowney/user_announcements"
-  s.summary     = "Manage and display site-wide announcements by user, role and announcement type."
+  s.summary     = "Manage and display site-wide announcements by user, scoped by user role."
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "CHANGELOG.md", "Rakefile", "README.md"]
 
@@ -30,8 +30,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'coveralls'
   s.add_development_dependency 'shoulda-matchers'  
   s.add_development_dependency 'database_cleaner'
-  
-  # s.add_development_dependency 'bootstrap-view-helpers'
   
   if s.platform == 'java'
     s.add_development_dependency 'activerecord-jdbcsqlite3-adapter'
