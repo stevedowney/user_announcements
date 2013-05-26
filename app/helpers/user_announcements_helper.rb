@@ -4,5 +4,4 @@ module UserAnnouncementsHelper
   include UserAnnouncements::MiscHelper
   include UserAnnouncements::StyleHelper
   include UserAnnouncements::ShowAnnouncements
-  
 end
