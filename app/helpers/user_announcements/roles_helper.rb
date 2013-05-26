@@ -37,7 +37,7 @@ module UserAnnouncements::RolesHelper
   end
   
   def _ua_roles
-    @_ua_roles ||= UserAnnouncements[:roles].map do |role|
+    @_ua_roles ||= Array(UserAnnouncements[:roles]).map do |role|
       name_id = (role.is_a?(Array) ? role : [role, role]).map(&:to_s)
       Role.new(name_id.first, name_id.last)
     end

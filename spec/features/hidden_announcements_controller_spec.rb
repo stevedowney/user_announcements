@@ -7,16 +7,6 @@ describe HiddenAnnouncementsController, :type => :feature do
 
   let(:user) { saved_user }
   
-  it "requires current_user to be defined" do
-    ENV['ENSURE_CURRENT_USER_TEST'] = 'true'
-    begin
-      expect { visit hidden_announcements_path }
-        .to raise_error(ApplicationController::CurrentUserMethodNotDefinedError)
-    ensure
-      ENV['ENSURE_CURRENT_USER_TEST'] = nil
-    end
-  end
-  
   it "index" do
     announcement = saved_current_announcement
     HiddenAnnouncement.create_for(user.id, announcement.id)

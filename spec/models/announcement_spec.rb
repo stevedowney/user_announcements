@@ -67,7 +67,7 @@ describe Announcement do
       end
       
       it "roles" do
-        ann.roles.should == UserAnnouncements[:default_roles]
+        ann.roles.should == Array(UserAnnouncements[:default_roles])
       end
       
       it "style" do

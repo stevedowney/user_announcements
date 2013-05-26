@@ -42,26 +42,13 @@ class Announcement < ActiveRecord::Base
     
     def new_with_defaults
       new do |ann|
-        ann.active = get_default(:active)
-        ann.starts_at = get_default(:starts_at)
-        ann.ends_at = get_default(:ends_at)
-        ann.roles = Array(get_default(:roles))
-        ann.style = get_default(:style)
+        ann.active = UserAnnouncements[:default_active]
+        ann.starts_at = UserAnnouncements[:default_starts_at]
+        ann.ends_at = UserAnnouncements[:default_ends_at]
+        ann.roles = Array(UserAnnouncements[:default_roles])
+        ann.style = UserAnnouncements[:default_style]
       end
     end
     
-    private
-    
-    def get_default(column)
-      config_key = "default_#{column}"
-      default = UserAnnouncements.config.send(config_key)
-      
-      if default.is_a?(Proc)
-        default.call
-      else
-        default
-      end
-    end
-
   end
 end
