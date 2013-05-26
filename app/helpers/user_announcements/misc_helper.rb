@@ -32,7 +32,7 @@ module UserAnnouncements::MiscHelper
     if params.has_key?(:bootstrap)
       params[:bootstrap] == 'true'
     else
-      UserAnnouncements.config.bootstrap
+      UserAnnouncements[:bootstrap]
     end
   end
   
