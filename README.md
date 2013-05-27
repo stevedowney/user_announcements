@@ -36,16 +36,12 @@ Add it to your Gemfile:
 gem "user_announcements"
 ```
 
-Run bundler:
+From the command line:
 
 ```sh
-bundle install
-```
-
-Install files:
-
-```sh
-rails generate user_announcements:install
+$ bundle install
+$ rails generate user_announcements:install
+$ rake db:migrate
 ```
 
 ## Getting Started
