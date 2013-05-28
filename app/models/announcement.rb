@@ -1,6 +1,6 @@
 class Announcement < ActiveRecord::Base
-  serialize :roles, class_name = Array
-  serialize :types, class_name = Array
+  serialize :roles, Array
+  serialize :types, Array
   
   attr_accessible :message, :starts_at, :ends_at, :active, :roles, :style
 
