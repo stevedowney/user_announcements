@@ -33,6 +33,10 @@ table.ua-table td {
   vertical-align: top;
 }
 
+.announcement.bootstrap {
+  width: 40em;
+}
+
 .announcement.non-bootstrap {
   background-color: #fcf8e3;
   color: #c09853;
@@ -41,7 +45,6 @@ table.ua-table td {
   padding: 10px;
   text-align: center;
 }
-
 
 .announcement.non-bootstrap a {
     font-size: 12px;
