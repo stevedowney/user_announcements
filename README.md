@@ -156,3 +156,9 @@ end
 
 Don't forget to restart your Rails server after changes to the config file.
 
+### Stylesheets
+
+When the `user_announcements:install` command is run `app/assets/stylesheets/user_announcements.css`
+is created.  Adjust styling, paying attention to the selectors -- some are for when you are configured
+with `config.bootstrap = true`; most are for when `config.bootstrap = false`.
+
