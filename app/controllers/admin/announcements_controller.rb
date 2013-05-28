@@ -17,7 +17,7 @@ class Admin::AnnouncementsController < ApplicationController
   def create
     @announcement = Announcement.new(announcement_params)
     if @announcement.save
-      redirect_to admin_announcements_path, :flash => { success: 'Announcement created'}
+      redirect_to admin_announcements_path, :flash => { notice: 'Announcement created'}
     else
       render "new"
     end
@@ -27,7 +27,7 @@ class Admin::AnnouncementsController < ApplicationController
     @announcement.attributes = announcement_params
     @announcement.roles = [] unless announcement_params.has_key?(:roles)  
     if @announcement.save
-      redirect_to admin_announcements_path, :flash => { success: 'Announcement updated' }
+      redirect_to admin_announcements_path, :flash => { notice: 'Announcement updated' }
     else
       render "edit"
     end
@@ -35,7 +35,7 @@ class Admin::AnnouncementsController < ApplicationController
   
   def destroy
     @announcement.destroy
-    redirect_to admin_announcements_path, :flash => { success: 'Announcement deleted' }
+    redirect_to admin_announcements_path, :flash => { notice: 'Announcement deleted' }
   end
 
   private
