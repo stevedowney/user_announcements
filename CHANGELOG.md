@@ -5,6 +5,7 @@
 * support for StrongParameters
 * moved Bootstrap announcement width control to stylesheet
 * changed admin announcements flash type from :success to :notice
+* display roles vertically on edit page
 
 ## v 0.0.4
 

@@ -20,7 +20,7 @@ module UserAnnouncements::RolesHelper
   private
   
   def _ua_roles_checkboxes(roles)
-    safe_join( roles.map { |role| _ua_role_checkbox(role) } )
+    safe_join( roles.map { |role| _ua_role_checkbox(role) }, '<br>'.html_safe )
   end
 
   def _ua_role_checkbox(role)
