@@ -32,6 +32,7 @@ describe UserAnnouncements::MiscHelper do
     after  { UserAnnouncements.config.bootstrap = @_config_dtp }
     
     it "true if config true" do
+      UserAnnouncements.config.bootstrap = true
       UserAnnouncements.config.bootstrap_datetime_picker = true
       helper.should be_ua_bootstrap_datetime_picker
     end
