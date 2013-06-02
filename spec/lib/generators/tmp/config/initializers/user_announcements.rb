@@ -2,11 +2,11 @@
 
 UserAnnouncements.config do |config|
 
-  using_bootstrap = <%= !options.no_bootstrap? %>
+  using_bootstrap = true
   
   if using_bootstrap
     config.bootstrap = true
-    config.bootstrap_datetime_picker = <%= !options.no_bootstrap_dtp? %>
+    config.bootstrap_datetime_picker = true
     config.styles = [['Yellow', ''], ['Red', 'alert-error'], ['Green', 'alert-success'], ['Blue', 'alert-info']]
   else
     config.bootstrap = false

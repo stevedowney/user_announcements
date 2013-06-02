@@ -72,6 +72,9 @@ GEM
     eventmachine (1.0.3)
     ffi (1.8.1)
     formatador (0.2.4)
+    generator_spec (0.8.7)
+      activerecord (>= 3.0, < 4.0)
+      railties (>= 3.0, < 4.0)
     guard (1.8.0)
       formatador (>= 0.2.4)
       listen (>= 1.0.0)
@@ -205,6 +208,7 @@ DEPENDENCIES
   capybara-webkit
   coveralls
   database_cleaner
+  generator_spec
   guard-rspec
   guard-spork
   jquery-rails
