@@ -16,6 +16,15 @@ describe Admin::AnnouncementsController, :type => :feature do
     before(:each) do
       visit admin_announcements_path
       click_on 'New Announcement'
+      @_bs = UserAnnouncements[:bootstrap]
+      @_dtp = UserAnnouncements[:bootstrap_datetime_picker]
+      UserAnnouncements.config.bootstrap = true
+      UserAnnouncements.config.bootstrap_datetime_picker = true
+    end
+    
+    after(:each) do
+      UserAnnouncements.config.bootstrap = @_bs
+      UserAnnouncements.config.bootstrap_datetime_picker = @_dtp
     end
 
     it "failure" do
@@ -23,8 +32,13 @@ describe Admin::AnnouncementsController, :type => :feature do
       page.should have_content("can't be blank")
     end
     
+    # TODO: Strong parameter testing
+    # TODO: intermittent failures (seed 26903): if referencing bootstrap dates (as opposed to datetime selects)
+    #       for some reason setting config in spec isn't still set in helper 
     it "success" do
       fill_in "Message", with: 'my new message'
+      # fill_in "Starts at", with: '2012-01-01 12:00'
+      # fill_in "Ends at", with: '2012-01-02 12:00'
       # check 'Public'
       click_on "Create Announcement"
       page.should have_selector('h1', text: 'Administer Announcements')

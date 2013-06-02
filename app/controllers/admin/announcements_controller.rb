@@ -49,11 +49,13 @@ class Admin::AnnouncementsController < ApplicationController
       params.require(:announcement).permit(
        :active,
        :message,
+       :starts_at,
        :"starts_at(1i)",
        :"starts_at(2i)",
        :"starts_at(3i)",
        :"starts_at(4i)",
        :"starts_at(5i)",
+       :ends_at,
        :"ends_at(1i)",
        :"ends_at(2i)",
        :"ends_at(3i)",
