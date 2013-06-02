@@ -2,7 +2,7 @@
 
 UserAnnouncements.config do |config|
 
-  using_bootstrap = true
+  using_bootstrap = <%= options.bootstrap? %>
   
   if using_bootstrap
     config.bootstrap = true

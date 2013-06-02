@@ -1,4 +1,4 @@
-<%= form_for [:admin, @announcement], :html => {:class => 'form-horizontal announcement-detail'} do |f| %>
+<%= form_for [:admin, @announcement], :html => {:class => 'announcement-detail'} do |f| %>
   <%= _ua_active_model_errors(f.object) %>
 
   <p>
@@ -28,11 +28,15 @@
     <%= f.submit :class => 'btn btn-primary' %>
     <%= link_to("Cancel", admin_announcements_path, :class => 'btn') %>
   </div>
+  
 <% end %>
 
-<style>
-  p.datetime-select select {
-    width: 8em;
-  }
-</style>
-
+<%- if UserAnnouncements[:bootstrap_datetime_picker] %>
+<script>
+  
+  $(function() {
+    $('.ua-datetimepicker').datetimepicker({
+    });
+  })
+</script>
+<% end %>

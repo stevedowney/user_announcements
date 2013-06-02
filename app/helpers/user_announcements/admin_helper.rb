@@ -22,10 +22,10 @@ module UserAnnouncements::AdminHelper
   end
   
   def ua_datetime_p(f, method)
-    content_tag(:p, class: 'datetime-select') do
-      f.label(method) + 
-      ua_br +      
-      f.datetime_select(method)
+    if UserAnnouncements[:bootstrap_datetime_picker]
+      ua_datetime_p_bootstrap(f, method)
+    else
+      ua_datetime_p_non_bootstrap(f, method)
     end
   end
   
@@ -36,6 +36,44 @@ module UserAnnouncements::AdminHelper
       {class: "ua-table bootstrap table table-striped table-bordered table-hover"}
     else
       {class: 'ua-table non-bootstrap'}
+    end
+  end
+  
+  # <p id="datetimepicker1" class="input-append date">
+  #   <label>Foo</label>
+  #   <input data-format="dd/MM/yyyy hh:mm:ss" type="text"></input>
+  #   <span class="add-on">
+  #     <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+  #     </i>
+  #   </span>
+  # </p>
+  
+  def ua_datetime_p_bootstrap(f, method)
+    value = f.object.send(method).try(:strftime, "%Y-%m-%d %H:%M")
+    %(<p class="input-append date ua-datetimepicker" style: "display:block !important">
+      #{f.label(method)}
+      #{f.text_field(method, value: value, data: {format: "yyyy-MM-dd hh:mm"})}
+      <span class="add-on">
+        <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+        </i>
+      </span>
+    </p>).html_safe
+    
+    # content_tag(:p, class: "input-append date") do
+    #   f.label(method) + 
+    #   ua_br +      
+    #   f.text_field(method, class: 'ua-datetimepicker add-on', data: {format: 'dd/MM/yyyy hh:mm'}) +
+    #     content_tag(:span, class: 'add-on') do
+    #       content_tag(:i, nil, data: {time_icon: 'icon-time', date_icon: 'icon-calendar'})
+    #     end
+    # end
+  end
+
+  def ua_datetime_p_non_bootstrap(f, method)
+    content_tag(:p, class: 'datetime-select') do
+      f.label(method) + 
+      ua_br +      
+      f.datetime_select(method)
     end
   end
   

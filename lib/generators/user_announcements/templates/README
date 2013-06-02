@@ -1,0 +1,10 @@
+
+****************************************************************************
+* Check configuration settings in config/initializers/user_announcements.rb
+
+* Put the view helper `user_announcements` in your layout(s)
+
+* These url helpers are available:
+   * admin_announcements_path
+   * hidden_anouncements_path
+****************************************************************************

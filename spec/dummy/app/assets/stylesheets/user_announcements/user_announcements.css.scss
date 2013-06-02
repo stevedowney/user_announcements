@@ -79,6 +79,25 @@ table.ua-table {
   
 }
 
-form.announcement-detail label{
-  margin-bottom: 0.4em;
+form.announcement-detail {
+  
+  p {
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+  
+  label {
+    margin-bottom: 0.4em;
+  }
+ 
+  .ua-datetimepicker {
+    input {
+      width: 8em;
+    }
+  }
+  
+  p.datetime-select select {
+    width: 8em;
+  }
+  
 }
