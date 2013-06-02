@@ -1,5 +1,10 @@
 # Change Log
 
+## v 0.0.6
+
+* add Bootstrap datetimepicker assets
+* installer copies Bootstrap datetimepicker assets by default
+
 ## v 0.0.5
 
 * support for StrongParameters
