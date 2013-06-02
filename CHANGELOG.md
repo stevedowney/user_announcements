@@ -1,5 +1,9 @@
 # Change Log
 
+## v 0.0.7
+
+* fix width CSS problem with roles column
+
 ## v 0.0.6
 
 * add Bootstrap datetimepicker assets
