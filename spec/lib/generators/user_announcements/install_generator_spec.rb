@@ -6,7 +6,7 @@ describe UserAnnouncements::Generators::InstallGenerator do
   include GeneratorSpec::TestCase
   destination File.expand_path("../../tmp", __FILE__)
   before { prepare_destination }
-  # after  { rm_rf(destination_root) }
+  after  { rm_rf(destination_root) }
   
   it "defaults" do
     run_generator
@@ -83,7 +83,7 @@ describe UserAnnouncements::Generators::InstallGenerator do
       directory "config/initializers" do
         file "user_announcements.rb" do
           contains "using_bootstrap = true"
-          contains "config.bootstrap_datetime_picker = true"
+          contains "config.bootstrap_datetime_picker = false"
         end
       end
       

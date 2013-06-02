@@ -67,6 +67,53 @@ describe Admin::AnnouncementsController, :type => :feature do
     
   end
   
+  describe 'non-bootstrap' do
+    describe 'create' do
+      before(:each) do
+        visit admin_announcements_path(bootstrap: false)
+        click_on 'New Announcement'
+      end
+
+      it "failure" do
+        click_on "Create Announcement"
+        page.should have_content("can't be blank")
+      end
+
+      it "success" do
+        fill_in "Message", with: 'my new message'
+        # check 'Public'
+        click_on "Create Announcement"
+        page.should have_selector('h1', text: 'Administer Announcements')
+        page.should have_content('my new message')
+      end
+    end
+  end
+  
+  describe 'with roles' do
+    describe 'create' do
+      before(:each) do
+        @_roles = UserAnnouncements[:roles]
+        UserAnnouncements.config.roles = ['','Admin']
+        visit admin_announcements_path(bootstrap: false)
+        click_on 'New Announcement'
+      end
+      after { UserAnnouncements.config.roles = @_roles }
+
+      it "failure" do
+        click_on "Create Announcement"
+        page.should have_content("can't be blank")
+      end
+
+      it "success" do
+        fill_in "Message", with: 'my new message'
+        # check 'Public'
+        click_on "Create Announcement"
+        page.should have_selector('h1', text: 'Administer Announcements')
+        page.should have_content('my new message')
+      end
+    end
+  end
+  
   describe 'table attributes' do
     before(:each) do
       saved_current_announcement

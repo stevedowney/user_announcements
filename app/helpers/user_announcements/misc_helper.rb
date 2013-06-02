@@ -36,4 +36,7 @@ module UserAnnouncements::MiscHelper
     end
   end
   
+  def ua_bootstrap_datetime_picker?
+    ua_bootstrap? && UserAnnouncements[:bootstrap_datetime_picker]
+  end
 end

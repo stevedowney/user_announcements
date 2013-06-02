@@ -23,6 +23,7 @@ episode of [RailsCasts](http://railscasts.com/).  If you don't have a premium ac
 
 ## Assumptions
 
+* you are using the Bootstrap framework.  If not, use the `--no-bootstrap` option when you run the installer
 * your controllers respond to `ensure_admin_user` which ensures only admin users can create/edit/delete
 announcemets
 * your controllers respond to `current_user`, which is also a `helper_method`
@@ -40,6 +41,17 @@ From the command line:
 
 ```sh
 $ bundle install
+```
+
+See the installer options:
+
+```sh
+$ rails generate user_announcements:install --help
+```
+
+Run the installer and run migrations:
+
+```sh
 $ rails generate user_announcements:install
 $ rake db:migrate
 ```
@@ -130,13 +142,17 @@ There are several configuration settings found in `../config/initializers/user_a
 
 UserAnnouncements.config do |config|
 
-  # Bootstrap
-  config.bootstrap = true
-  config.styles = [['Yellow', ''], ['Red', 'alert-error'], ['Green', 'alert-success'], ['Blue', 'alert-info']]
-
-  # non-Bootstrap
-  # config.bootstrap = false
-  # config.styles = [['Yellow', 'yellow'], ['Red', 'red'], ['Green', 'green'], ['Blue', 'blue']]
+  using_bootstrap = true
+  
+  if using_bootstrap
+    config.bootstrap = true
+    config.bootstrap_datetime_picker = true
+    config.styles = [['Yellow', ''], ['Red', 'alert-error'], ['Green', 'alert-success'], ['Blue', 'alert-info']]
+  else
+    config.bootstrap = false
+    config.bootstrap_datetime_picker = false
+    config.styles = [['Yellow', 'yellow'], ['Red', 'red'], ['Green', 'green'], ['Blue', 'blue']]
+  end
 
   # Announcement defaults
   config.default_active = true
@@ -146,10 +162,12 @@ UserAnnouncements.config do |config|
   # config.default_roles = ['admin']
 
   # Roles
+  # Setting config.roles will show roles on the Announcment detail form and cause
+  # roles to be considered in showing announcements to users
   # config.roles = []
   # config.roles = ['', 'admin']
   # config.roles = [ ['Public', ''], ['Administrator', 'admin'] ]
-  # config.roles = lambda { MyRoleClass.map { |role| [role.name, role.id] } }  
+  # config.roles = lambda { MyRoleClass.all.map { |role| [role.name, role.id] } }  
   
 end
 ```

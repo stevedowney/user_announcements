@@ -10,7 +10,7 @@ UserAnnouncements.config do |config|
     config.styles = [['Yellow', ''], ['Red', 'alert-error'], ['Green', 'alert-success'], ['Blue', 'alert-info']]
   else
     config.bootstrap = false
-    config.bootstrap_datetime_picker = true
+    config.bootstrap_datetime_picker = false
     config.styles = [['Yellow', 'yellow'], ['Red', 'red'], ['Green', 'green'], ['Blue', 'blue']]
   end
 
@@ -22,6 +22,8 @@ UserAnnouncements.config do |config|
   # config.default_roles = ['admin']
 
   # Roles
+  # Setting config.roles will show roles on the Announcment detail form and cause
+  # roles to be considered in showing announcements to users
   # config.roles = []
   # config.roles = ['', 'admin']
   # config.roles = [ ['Public', ''], ['Administrator', 'admin'] ]
