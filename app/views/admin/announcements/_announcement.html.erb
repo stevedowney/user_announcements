@@ -3,7 +3,7 @@
   <td class='datetime'><%= ua_datetime_display(announcement.starts_at) %></td>
   <td class='datetime'><%= ua_datetime_display(announcement.ends_at) %></td>
   <td class='status'><%= announcement.status %></td>
-  <td class='active'><%= boolean_display(announcement.active)%></td>
+  <td class='active'><%= ua_boolean_display(announcement.active)%></td>
   <td class='roles'><%= ua_roles_display(announcement) %></td>
   <td><%= link_to('edit', edit_admin_announcement_path(announcement), :class => 'btn btn-mini') %></td>
   <td><%= link_to('delete', admin_announcement_path(announcement), :data => {confirm: 'Are you sure?'}, :method => :delete, :class => 'btn btn-mini btn-danger') %></td>

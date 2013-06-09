@@ -13,16 +13,16 @@ module UserAnnouncements::MiscHelper
     "<br />".html_safe unless ua_bootstrap?
   end
   
-  def flash_messages
+  def ua_flash_messagesages
     return nil if flash.empty?
     result = []
     flash.each do |name, msg|
-      result << build_message(name, msg)
+      result << _ua_build_message(name, msg)
     end
     result.join("").html_safe
   end
 
-  def build_message(msg_type, msg)
+  def _ua_build_message(msg_type, msg)
     content_tag(:div, :class => "alert alert-#{msg_type.to_s}") do
       content_tag(:a, 'x', :class => "close", "data-dismiss" => "alert") + msg.html_safe
     end

@@ -19,16 +19,9 @@ module UserAnnouncements
       class_option :no_bootstrap_dtp, aliases: '-d', type: :boolean, desc: 'Do not copy Bootstrap datetimepicker assets'
       class_option :readme, aliases: '-r', type: :boolean, desc: 'Display README and exit'
   
-      def readme_only
-        puts "behavior: #{behavior}"
-        # if options.readme?
-        #   readme_to_console
-        #   exit
-        # end
-      end
-      
       def copy_bootstrap_datetime_picker_assets
         return if options.readme?
+        
         unless options.no_bootstrap? || options.no_bootstrap_dtp?
           copy_file 'app/assets/javascripts/user_announcements/bootstrap-datetimepicker.min.js'
           copy_file 'app/assets/stylesheets/user_announcements/bootstrap-datetimepicker.min.css'
@@ -37,6 +30,7 @@ module UserAnnouncements
       
       def install_base_files
         return if options.readme?
+        
         copy_file 'app/assets/stylesheets/user_announcements/user_announcements.css.scss'
         template  'config/initializers/user_announcements.rb'
         migration_template "migration.rb", "db/migrate/create_user_announcement_tables.rb"
@@ -44,14 +38,8 @@ module UserAnnouncements
 
       def show_readme
         if behavior == :invoke
-          readme_to_console
+          readme "README"
         end
-      end
-      
-      private
-      
-      def readme_to_console
-        readme "README"
       end
       
     end

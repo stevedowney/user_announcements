@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    user_announcements (0.0.5)
+    user_announcements (0.0.7)
       jquery-rails
       rails
 

@@ -17,7 +17,7 @@ module UserAnnouncements::AdminHelper
     end
   end
   
-  def boolean_display(boolean)
+  def ua_boolean_display(boolean)
     ( boolean ? '&#10004;' : '&nbsp;' ).html_safe
   end
   
