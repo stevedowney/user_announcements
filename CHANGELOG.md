@@ -1,5 +1,9 @@
 # Change Log
 
+## v 0.0.8
+
+* prefix view helpers to avoid collisions in host app
+
 ## v 0.0.7
 
 * fix width CSS problem with roles column
