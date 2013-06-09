@@ -5,11 +5,19 @@ describe Admin::AnnouncementsController, :type => :feature do
     create_and_login_user
   end
 
-  it "index" do
-    saved_current_announcement
-    visit admin_announcements_path
-    page.should have_selector('h1', text: 'Administer Announcements')
-    page.should have_content('current')
+  describe 'index' do
+    it "admin" do
+      saved_current_announcement
+      visit admin_announcements_path
+      page.should have_selector('h1', text: 'Administer Announcements')
+      page.should have_content('current')
+    end
+    
+    it 'non-admin' do
+      create_and_login_user # id=2, not admin
+      visit admin_announcements_path
+      page.should have_content('Not authorized')
+    end
   end
   
   describe 'create' do
@@ -84,9 +92,11 @@ describe Admin::AnnouncementsController, :type => :feature do
   describe 'non-bootstrap' do
     describe 'create' do
       before(:each) do
-        visit admin_announcements_path(bootstrap: false)
+        UserAnnouncements.config.bootstrap = false
+        visit admin_announcements_path
         click_on 'New Announcement'
       end
+      after { UserAnnouncements.config.bootstrap = false }
 
       it "failure" do
         click_on "Create Announcement"
